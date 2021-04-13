@@ -1,5 +1,5 @@
 /* eslint-disable object-curly-newline */
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import * as Yup from 'yup';
@@ -12,15 +12,27 @@ import {
   TextField,
   Typography
 } from '@material-ui/core';
+import { api } from '../services/api';
+import AuthContext from '../contexts/auth';
 
 const Login = () => {
-  // const navigate = useNavigate();
+  // const navigation = useNavigate();
 
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+  const { signIn } = useContext(AuthContext);
 
-  const signIn = () => {
-    console.log({ email, password });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+
+    const data = {
+      email,
+      senha: password
+    };
+
+    const response = await api.post('/login', data);
+    signIn(response.data.token, response.data.user);
   };
 
   return (
@@ -48,7 +60,7 @@ const Login = () => {
             })}
           >
             {({ handleBlur, isSubmitting }) => (
-              <form onSubmit={() => signIn()}>
+              <form onSubmit={(e) => handleSignIn(e)}>
                 <Box sx={{ mb: 3 }}>
                   <Typography color="textPrimary" variant="h2">
                     Sign in
@@ -66,7 +78,7 @@ const Login = () => {
                   margin="normal"
                   name="email"
                   onBlur={handleBlur}
-                  onChange={(value) => setEmail(value)}
+                  onChange={(event) => setEmail(event.target.value)}
                   type="email"
                   variant="outlined"
                 />
@@ -76,7 +88,7 @@ const Login = () => {
                   margin="normal"
                   name="password"
                   onBlur={handleBlur}
-                  onChange={(value) => setPassword(value)}
+                  onChange={(event) => setPassword(event.target.value)}
                   type="password"
                   variant="outlined"
                 />
