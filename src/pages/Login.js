@@ -1,3 +1,5 @@
+/* eslint-disable object-curly-newline */
+import React, { useState } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import * as Yup from 'yup';
@@ -17,6 +19,13 @@ import GoogleIcon from 'src/icons/Google';
 const Login = () => {
   const navigate = useNavigate();
 
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+
+  const signIn = () => {
+    console.log({ email, password });
+  };
+
   return (
     <>
       <Helmet>
@@ -33,10 +42,6 @@ const Login = () => {
       >
         <Container maxWidth="sm">
           <Formik
-            initialValues={{
-              email: 'demo@devias.io',
-              password: 'Password123'
-            }}
             validationSchema={Yup.object().shape({
               email: Yup.string()
                 .email('Must be a valid email')
@@ -48,16 +53,8 @@ const Login = () => {
               navigate('/app/dashboard', { replace: true });
             }}
           >
-            {({
-              errors,
-              handleBlur,
-              handleChange,
-              handleSubmit,
-              isSubmitting,
-              touched,
-              values
-            }) => (
-              <form onSubmit={handleSubmit}>
+            {({ handleBlur, handleSubmit, isSubmitting }) => (
+              <form onSubmit={() => signIn()}>
                 <Box sx={{ mb: 3 }}>
                   <Typography color="textPrimary" variant="h2">
                     Sign in
@@ -110,29 +107,23 @@ const Login = () => {
                   </Typography>
                 </Box>
                 <TextField
-                  error={Boolean(touched.email && errors.email)}
                   fullWidth
-                  helperText={touched.email && errors.email}
                   label="Email Address"
                   margin="normal"
                   name="email"
                   onBlur={handleBlur}
-                  onChange={handleChange}
+                  onChange={(value) => setEmail(value)}
                   type="email"
-                  value={values.email}
                   variant="outlined"
                 />
                 <TextField
-                  error={Boolean(touched.password && errors.password)}
                   fullWidth
-                  helperText={touched.password && errors.password}
                   label="Password"
                   margin="normal"
                   name="password"
                   onBlur={handleBlur}
-                  onChange={handleChange}
+                  onChange={(value) => setPassword(value)}
                   type="password"
-                  value={values.password}
                   variant="outlined"
                 />
                 <Box sx={{ py: 2 }}>
