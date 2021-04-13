@@ -16,6 +16,7 @@ import {
   Users as UsersIcon
 } from 'react-feather';
 import NavItem from './NavItem';
+import './index.css';
 
 const user = {
   avatar: '/static/images/gswLogo.png',
@@ -107,6 +108,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
           onClose={onMobileClose}
           open={openMobile}
           variant="temporary"
+          style={{ backgroundColor: '#1D1B1B' }}
           PaperProps={{
             sx: {
               width: 256
