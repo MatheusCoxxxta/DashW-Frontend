@@ -10,10 +10,12 @@ import {
   Container,
   Link,
   TextField,
-  Typography
+  Typography,
+  Card
 } from '@material-ui/core';
 import { api } from '../services/api';
 import AuthContext from '../contexts/auth';
+import './styles.css';
 
 const Login = () => {
   // const navigation = useNavigate();
@@ -42,78 +44,81 @@ const Login = () => {
       </Helmet>
       <Box
         sx={{
-          backgroundColor: 'background.default',
+          backgroundColor: '#000',
           display: 'flex',
           flexDirection: 'column',
           height: '100%',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          alignItems: 'center'
         }}
       >
-        <Container maxWidth="sm">
-          <Formik
-            validationSchema={Yup.object().shape({
-              email: Yup.string()
-                .email('Must be a valid email')
-                .max(255)
-                .required('Email is required'),
-              password: Yup.string().max(255).required('Password is required')
-            })}
-          >
-            {({ handleBlur, isSubmitting }) => (
-              <form onSubmit={(e) => handleSignIn(e)}>
-                <Box sx={{ mb: 3 }}>
-                  <Typography color="textPrimary" variant="h2">
-                    Sign in
-                  </Typography>
-                </Box>
-                <Box
-                  sx={{
-                    pb: 1,
-                    pt: 3
-                  }}
-                />
-                <TextField
-                  fullWidth
-                  label="Email Address"
-                  margin="normal"
-                  name="email"
-                  onBlur={handleBlur}
-                  onChange={(event) => setEmail(event.target.value)}
-                  type="email"
-                  variant="outlined"
-                />
-                <TextField
-                  fullWidth
-                  label="Password"
-                  margin="normal"
-                  name="password"
-                  onBlur={handleBlur}
-                  onChange={(event) => setPassword(event.target.value)}
-                  type="password"
-                  variant="outlined"
-                />
-                <Box sx={{ py: 2 }}>
-                  <Button
-                    color="primary"
-                    disabled={isSubmitting}
+        <Card className="card-login">
+          <Container maxWidth="lg">
+            <Formik
+              validationSchema={Yup.object().shape({
+                email: Yup.string()
+                  .email('Must be a valid email')
+                  .max(255)
+                  .required('Email is required'),
+                password: Yup.string().max(255).required('Password is required')
+              })}
+            >
+              {({ handleBlur, isSubmitting }) => (
+                <form onSubmit={(e) => handleSignIn(e)}>
+                  <Box sx={{ mb: 3 }}>
+                    <Typography color="textPrimary" variant="h2">
+                      Sign in
+                    </Typography>
+                  </Box>
+                  <Box
+                    sx={{
+                      pb: 1,
+                      pt: 3
+                    }}
+                  />
+                  <TextField
                     fullWidth
-                    size="large"
-                    type="submit"
-                    variant="contained"
-                  >
-                    Sign in now
-                  </Button>
-                </Box>
-                <Typography color="textSecondary" variant="body1">
-                  Don&apos;t have an account?
-                  <Link component={RouterLink} to="/register" variant="h6">
-                    Sign up
-                  </Link>
-                </Typography>
-              </form>
-            )}
-          </Formik>
-        </Container>
+                    label="Email Address"
+                    margin="normal"
+                    name="email"
+                    onBlur={handleBlur}
+                    onChange={(event) => setEmail(event.target.value)}
+                    type="email"
+                    variant="outlined"
+                  />
+                  <TextField
+                    fullWidth
+                    label="Password"
+                    margin="normal"
+                    name="password"
+                    onBlur={handleBlur}
+                    onChange={(event) => setPassword(event.target.value)}
+                    type="password"
+                    variant="outlined"
+                  />
+                  <Box sx={{ py: 2 }}>
+                    <Button
+                      color="primary"
+                      disabled={isSubmitting}
+                      fullWidth
+                      size="large"
+                      type="submit"
+                      variant="contained"
+                    >
+                      Sign in now
+                    </Button>
+                  </Box>
+                  <Typography color="textSecondary" variant="body1">
+                    Don&apos;t have an account?
+                    <Link component={RouterLink} to="/register" variant="h6">
+                      Sign up
+                    </Link>
+                  </Typography>
+                </form>
+              )}
+            </Formik>
+          </Container>
+        </Card>
       </Box>
     </>
   );
