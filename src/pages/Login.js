@@ -1,6 +1,6 @@
 /* eslint-disable object-curly-newline */
 import React, { useState } from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
@@ -14,7 +14,7 @@ import {
 } from '@material-ui/core';
 
 const Login = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
@@ -46,11 +46,8 @@ const Login = () => {
                 .required('Email is required'),
               password: Yup.string().max(255).required('Password is required')
             })}
-            onSubmit={() => {
-              navigate('/app/dashboard', { replace: true });
-            }}
           >
-            {({ handleBlur, handleSubmit, isSubmitting }) => (
+            {({ handleBlur, isSubmitting }) => (
               <form onSubmit={() => signIn()}>
                 <Box sx={{ mb: 3 }}>
                   <Typography color="textPrimary" variant="h2">
