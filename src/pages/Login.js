@@ -53,7 +53,13 @@ const Login = () => {
         }}
       >
         <Card className="card-login">
-          <Container maxWidth="lg">
+          <Container
+            maxWidth="xl"
+            sx={{
+              padding: 0
+            }}
+            className="container-login"
+          >
             <Formik
               validationSchema={Yup.object().shape({
                 email: Yup.string()
