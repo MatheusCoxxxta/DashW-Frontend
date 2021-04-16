@@ -1,6 +1,6 @@
 /* eslint-disable object-curly-newline */
 import React, { useState, useContext } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
@@ -18,7 +18,7 @@ import AuthContext from '../contexts/auth';
 import './styles.css';
 
 const Login = () => {
-  // const navigation = useNavigate();
+  const navigation = useNavigate();
 
   const { signIn } = useContext(AuthContext);
 
@@ -35,6 +35,7 @@ const Login = () => {
 
     const response = await api.post('/login', data);
     signIn(response.data.token, response.data.user);
+    navigation('/app/dashboard');
   };
 
   return (
