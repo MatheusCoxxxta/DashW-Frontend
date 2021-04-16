@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/no-array-index-key */
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import {
@@ -38,7 +39,14 @@ const TaskList = (props) => (
                 <TableCell>{`${task.hora}h`}</TableCell>
                 <TableCell>
                   <Chip
-                    style={{ backgroundColor: colors.danger }}
+                    style={{
+                      backgroundColor:
+                        task.status === 'QA_TESTING'
+                          ? colors.success
+                          : task.status === 'QA_DEPLOYING'
+                            ? colors.success
+                            : null
+                    }}
                     label={task.status}
                     size="small"
                   />
