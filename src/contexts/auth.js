@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import React, { useState, createContext, useEffect } from 'react';
 
-const AuthContext = createContext({ signed: true });
+const AuthContext = createContext({ signed: true, user: {} });
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     const getStoragedData = () => {
