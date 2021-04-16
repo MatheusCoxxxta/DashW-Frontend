@@ -45,7 +45,7 @@
   "git.enableSmartCommit": true,
   "git.autofetch": true,
   "git.confirmSync": false,
-  "window.zoomLevel": 0,
+  "window.zoomLevel": -1,
   "workbench.colorTheme": "Deep Ocean - Blue",
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
