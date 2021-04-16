@@ -15,6 +15,7 @@ import {
 } from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import Project from '../../__mocks__/Project';
+import colors from '../../constants/color';
 
 const TaskList = (props) => (
   <Card {...props}>
@@ -36,7 +37,11 @@ const TaskList = (props) => (
                 <TableCell>{task.descricao}</TableCell>
                 <TableCell>{`${task.hora}h`}</TableCell>
                 <TableCell>
-                  <Chip color="primary" label={task.status} size="small" />
+                  <Chip
+                    style={{ backgroundColor: colors.danger }}
+                    label={task.status}
+                    size="small"
+                  />
                 </TableCell>
               </TableRow>
             ))}
