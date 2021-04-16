@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
@@ -17,12 +17,7 @@ import {
 } from 'react-feather';
 import NavItem from './NavItem';
 import './index.css';
-
-const user = {
-  avatar: '/static/images/gswLogo.png',
-  jobTitle: 'DashW',
-  name: 'GSW Soluções Integradas'
-};
+import AuthContext from '../contexts/auth';
 
 const items = [
   {
@@ -44,6 +39,15 @@ const items = [
 
 const DashboardSidebar = ({ onMobileClose, openMobile }) => {
   const location = useLocation();
+
+  const { user } = useContext(AuthContext);
+  const parsedUser = JSON.parse(user);
+
+  const userData = {
+    avatar: parsedUser.imagem,
+    fullName: `${parsedUser.nome} ${parsedUser.sobrenome}`,
+    company: 'GSW Soluções Integradas'
+  };
 
   useEffect(() => {
     if (openMobile && onMobileClose) {
@@ -69,7 +73,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
       >
         <Avatar
           component={RouterLink}
-          src={user.avatar}
+          src={userData.avatar}
           sx={{
             cursor: 'pointer',
             width: 64,
@@ -78,10 +82,10 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
           to="/app/account"
         />
         <Typography color="textPrimary" variant="h5">
-          {user.name}
+          {userData.fullName}
         </Typography>
         <Typography color="textSecondary" variant="body2">
-          {user.jobTitle}
+          {userData.company}
         </Typography>
       </Box>
       <Divider />
