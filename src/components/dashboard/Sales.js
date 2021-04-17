@@ -1,7 +1,6 @@
 import { Bar } from 'react-chartjs-2';
 import {
   Box,
-  Button,
   Card,
   CardContent,
   CardHeader,
@@ -9,8 +8,6 @@ import {
   useTheme,
   colors
 } from '@material-ui/core';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
 const Sales = (props) => {
   const theme = useTheme();
@@ -89,16 +86,7 @@ const Sales = (props) => {
   return (
     <Card {...props}>
       <CardHeader
-        action={(
-          <Button
-            endIcon={<ArrowDropDownIcon />}
-            size="small"
-            variant="text"
-          >
-            Last 7 days
-          </Button>
-        )}
-        title="Latest Sales"
+        title="Gráfico geral das tarefas"
       />
       <Divider />
       <CardContent>
@@ -121,16 +109,7 @@ const Sales = (props) => {
           justifyContent: 'flex-end',
           p: 2
         }}
-      >
-        <Button
-          color="primary"
-          endIcon={<ArrowRightIcon />}
-          size="small"
-          variant="text"
-        >
-          Overview
-        </Button>
-      </Box>
+      />
     </Card>
   );
 };
