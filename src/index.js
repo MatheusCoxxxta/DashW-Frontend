@@ -4,7 +4,6 @@ import * as serviceWorker from './serviceWorker';
 import App from './App';
 import { AuthProvider } from './contexts/auth';
 
-console.log(AuthProvider);
 ReactDOM.render(
   <BrowserRouter>
     <AuthProvider>
