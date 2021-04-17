@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import { useEffect, useContext } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -41,7 +42,9 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
   const location = useLocation();
 
   const { user } = useContext(AuthContext);
-  const parsedUser = JSON.parse(user);
+
+  let parsedUser;
+  typeof user === 'object' ? parsedUser = user : parsedUser = JSON.parse(user);
 
   const userData = {
     avatar: parsedUser.imagem,
