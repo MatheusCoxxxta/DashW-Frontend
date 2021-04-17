@@ -3,12 +3,10 @@ import {
   Box,
   Container,
   Grid,
-  Pagination
+  Typography
 } from '@material-ui/core';
-
-import ProductListToolbar from 'src/components/product/ProductListToolbar';
-import ProductCard from 'src/components/product//ProductCard';
-import products from 'src/__mocks__/products';
+import TaskCard from '../components/TaskCard';
+import Project from '../__mocks__/Project';
 
 const ProductList = () => (
   <>
@@ -17,43 +15,71 @@ const ProductList = () => (
     </Helmet>
     <Box
       sx={{
-        backgroundColor: 'background.default',
+        backgroundColor: '#000',
         minHeight: '100%',
-        py: 3
+        py: 3,
+        flexDirection: 'row',
+        display: 'flex'
       }}
     >
-      <Container maxWidth={false}>
-        <ProductListToolbar />
+      <Container style={{ maxWidth: '25%' }}>
         <Box sx={{ pt: 3 }}>
-          <Grid
-            container
-            spacing={3}
-          >
-            {products.map((product) => (
-              <Grid
-                item
-                key={product.id}
-                lg={4}
-                md={6}
-                xs={12}
-              >
-                <ProductCard product={product} />
-              </Grid>
-            ))}
+          <Grid lg={12} style={{ flexDirection: 'row', marginLeft: 0 }}>
+            <Grid item lg={12} style={{ backgroundColor: '#F5F8FA', padding: 15, borderRadius: 3 }}>
+              <Typography color="textSecondary" style={{ textAlign: 'center' }} gutterBottom variant="h5">IN_PROGESS</Typography>
+              {
+              Project.tasks.map((task) => (
+                task.status === 'IN_PROGRESS'
+                  ? (
+                    <Grid item lg={12} sm={6} xl={3} xs={12} sx={{ margin: 1 }}>
+                      <TaskCard description={task.descricao} workedHours={task.hora} />
+                    </Grid>
+                  )
+                  : null
+              ))
+            }
+            </Grid>
           </Grid>
         </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            pt: 3
-          }}
-        >
-          <Pagination
-            color="primary"
-            count={3}
-            size="small"
-          />
+      </Container>
+      <Container style={{ maxWidth: '30%' }}>
+        <Box sx={{ pt: 3 }}>
+          <Grid lg={10} style={{ flexDirection: 'row', marginLeft: 0 }}>
+            <Grid item lg={12} style={{ backgroundColor: '#F5F8FA', padding: 15 }}>
+              <Typography color="textSecondary" style={{ textAlign: 'center' }} gutterBottom variant="h5">IN_PROGESS</Typography>
+              {
+              Project.tasks.map((task) => (
+                task.status === 'QA_TESTING'
+                  ? (
+                    <Grid item lg={12} sm={6} xl={3} xs={12}>
+                      <TaskCard description={task.descricao} workedHours={task.hora} />
+                    </Grid>
+                  )
+                  : null
+              ))
+            }
+            </Grid>
+          </Grid>
+        </Box>
+      </Container>
+      <Container style={{ maxWidth: '30%' }}>
+        <Box sx={{ pt: 3 }}>
+          <Grid lg={10} style={{ flexDirection: 'row', marginLeft: 0 }}>
+            <Grid item lg={12} style={{ backgroundColor: '#F5F8FA', padding: 15 }}>
+              <Typography color="textSecondary" style={{ textAlign: 'center' }} gutterBottom variant="h5">IN_PROGESS</Typography>
+              {
+              Project.tasks.map((task) => (
+                task.status === 'QA_DEPLOYING'
+                  ? (
+                    <Grid item lg={12} sm={6} xl={3} xs={12}>
+                      <TaskCard description={task.descricao} workedHours={task.hora} />
+                    </Grid>
+                  )
+                  : null
+              ))
+            }
+            </Grid>
+          </Grid>
         </Box>
       </Container>
     </Box>
