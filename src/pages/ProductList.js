@@ -45,8 +45,8 @@ const ProductList = () => (
       <Container style={{ maxWidth: '30%' }}>
         <Box sx={{ pt: 3 }}>
           <Grid lg={10} style={{ flexDirection: 'row', marginLeft: 0 }}>
-            <Grid item lg={12} style={{ backgroundColor: '#F5F8FA', padding: 15 }}>
-              <Typography color="textSecondary" style={{ textAlign: 'center' }} gutterBottom variant="h5">IN_PROGESS</Typography>
+            <Grid item lg={12} style={{ backgroundColor: '#F5F8FA', padding: 15, borderRadius: 3 }}>
+              <Typography color="textSecondary" style={{ textAlign: 'center' }} gutterBottom variant="h5">QA_TESTING</Typography>
               {
               Project.tasks.map((task) => (
                 task.status === 'QA_TESTING'
@@ -65,8 +65,8 @@ const ProductList = () => (
       <Container style={{ maxWidth: '30%' }}>
         <Box sx={{ pt: 3 }}>
           <Grid lg={10} style={{ flexDirection: 'row', marginLeft: 0 }}>
-            <Grid item lg={12} style={{ backgroundColor: '#F5F8FA', padding: 15 }}>
-              <Typography color="textSecondary" style={{ textAlign: 'center' }} gutterBottom variant="h5">IN_PROGESS</Typography>
+            <Grid item lg={12} style={{ backgroundColor: '#F5F8FA', padding: 15, borderRadius: 3 }}>
+              <Typography color="textSecondary" style={{ textAlign: 'center' }} gutterBottom variant="h5">QA_DEPLOYING</Typography>
               {
               Project.tasks.map((task) => (
                 task.status === 'QA_DEPLOYING'
