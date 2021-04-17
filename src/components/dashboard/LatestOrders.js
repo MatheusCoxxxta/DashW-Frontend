@@ -41,11 +41,13 @@ const TaskList = (props) => (
                   <Chip
                     style={{
                       backgroundColor:
-                        task.status === 'QA_TESTING'
-                          ? colors.success
-                          : task.status === 'QA_DEPLOYING'
-                            ? colors.success
-                            : null
+                        task.status === 'IN_PROGRESS' || task.status === 'FOR_TEST'
+                          ? colors.warning
+                          : task.status === 'PROD_DEPLOYING' || task.status === 'RELEASE_TO_PROD'
+                            ? colors.primary
+                            : task.status === 'QA_DEPLOYING' || task.status === 'QA_TESTING'
+                              ? colors.default
+                              : colors.success
                     }}
                     label={task.status}
                     size="small"
