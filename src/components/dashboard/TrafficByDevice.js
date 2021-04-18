@@ -9,9 +9,6 @@ import {
   colors,
   useTheme
 } from '@material-ui/core';
-import LaptopMacIcon from '@material-ui/icons/LaptopMac';
-import PhoneIcon from '@material-ui/icons/Phone';
-import TabletIcon from '@material-ui/icons/Tablet';
 
 const TrafficByDevice = (props) => {
   const theme = useTheme();
@@ -19,18 +16,19 @@ const TrafficByDevice = (props) => {
   const data = {
     datasets: [
       {
-        data: [63, 15, 22],
+        data: [70, 0, 30, 0],
         backgroundColor: [
           colors.indigo[500],
           colors.red[600],
-          colors.orange[600]
+          colors.orange[600],
+          colors.green[500]
         ],
         borderWidth: 8,
         borderColor: colors.common.white,
         hoverBorderColor: colors.common.white
       }
     ],
-    labels: ['Desktop', 'Tablet', 'Mobile']
+    labels: ['IN_PROGESS', 'FOR_TEST', 'PROD_DEPLOYING', 'DONE']
   };
 
   const options = {
@@ -55,24 +53,26 @@ const TrafficByDevice = (props) => {
     }
   };
 
-  const devices = [
+  const status = [
     {
-      title: 'Desktop',
-      value: 63,
-      icon: LaptopMacIcon,
+      title: 'IN_PROGRESS',
+      value: 70,
       color: colors.indigo[500]
     },
     {
-      title: 'Tablet',
-      value: 15,
-      icon: TabletIcon,
+      title: 'FOR_TEST',
+      value: 0,
       color: colors.red[600]
     },
     {
-      title: 'Mobile',
-      value: 23,
-      icon: PhoneIcon,
+      title: 'PROD_DEPLOYING',
+      value: 15,
       color: colors.orange[600]
+    },
+    {
+      title: 'DONE',
+      value: 0,
+      color: colors.green[600]
     }
   ];
 
@@ -99,9 +99,8 @@ const TrafficByDevice = (props) => {
             pt: 2
           }}
         >
-          {devices.map(({
+          {status.map(({
             color,
-            icon: Icon,
             title,
             value
           }) => (
@@ -112,7 +111,6 @@ const TrafficByDevice = (props) => {
                 textAlign: 'center'
               }}
             >
-              <Icon color="action" />
               <Typography
                 color="textPrimary"
                 variant="body1"

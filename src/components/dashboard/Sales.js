@@ -16,16 +16,11 @@ const Sales = (props) => {
     datasets: [
       {
         backgroundColor: colors.indigo[500],
-        data: [18, 5, 19, 27, 29, 19, 20],
-        label: 'This year'
+        data: [4, 0, 1, 0, 0, 1, 5],
+        label: 'Tasks'
       },
-      {
-        backgroundColor: colors.grey[200],
-        data: [11, 20, 12, 29, 30, 25, 13],
-        label: 'Last year'
-      }
     ],
-    labels: ['1 Aug', '2 Aug', '3 Aug', '4 Aug', '5 Aug', '6 Aug']
+    labels: ['IN_PROGRESS', 'QA_TESTING', 'QA_DEPLOYING', 'RELEASE_TO_PROD', 'FOR_TEST', 'PROD_DEPLOYING']
   };
 
   const options = {
