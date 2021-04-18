@@ -1,7 +1,7 @@
 /* eslint-disable object-curly-newline */
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { AppBar, Box, Hidden, IconButton, Toolbar } from '@material-ui/core';
+import { AppBar, Box, Hidden, IconButton, Toolbar, } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import InputIcon from '@material-ui/icons/Input';
 import { useNavigate } from 'react-router';
@@ -13,7 +13,7 @@ const DashboardNavbar = ({ onMobileNavOpen, ...rest }) => {
 
   const logout = () => {
     signOut();
-    navigation('/login');
+    navigation('/');
   };
 
   return (
