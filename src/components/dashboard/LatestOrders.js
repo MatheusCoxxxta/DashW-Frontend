@@ -3,7 +3,6 @@
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import {
   Box,
-  Button,
   Card,
   CardHeader,
   Chip,
@@ -14,7 +13,6 @@ import {
   TableHead,
   TableRow
 } from '@material-ui/core';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import Project from '../../__mocks__/Project';
 import colors from '../../constants/color';
 
@@ -40,6 +38,7 @@ const TaskList = (props) => (
                 <TableCell>
                   <Chip
                     style={{
+                      color: task.status === 'QA_DEPLOYING' || task.status === 'QA_TESTING' ? '#000000' : '#ffffff',
                       backgroundColor:
                         task.status === 'IN_PROGRESS' || task.status === 'FOR_TEST'
                           ? colors.warning
@@ -65,16 +64,7 @@ const TaskList = (props) => (
         justifyContent: 'flex-end',
         p: 2
       }}
-    >
-      <Button
-        color="primary"
-        endIcon={<ArrowRightIcon />}
-        size="small"
-        variant="text"
-      >
-        View all
-      </Button>
-    </Box>
+    />
   </Card>
 );
 
