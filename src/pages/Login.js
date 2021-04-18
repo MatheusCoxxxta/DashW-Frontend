@@ -1,6 +1,6 @@
 /* eslint-disable object-curly-newline */
 import React, { useState, useContext } from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
@@ -8,7 +8,6 @@ import {
   Box,
   Button,
   Container,
-  Link,
   TextField,
   Typography,
   Card
@@ -74,7 +73,7 @@ const Login = () => {
                 <form onSubmit={(e) => handleSignIn(e)}>
                   <Box sx={{ mb: 3 }}>
                     <Typography color="textPrimary" variant="h2">
-                      Sign in
+                      Autenticação
                     </Typography>
                   </Box>
                   <Box
@@ -85,7 +84,7 @@ const Login = () => {
                   />
                   <TextField
                     fullWidth
-                    label="Email Address"
+                    label="E-mail"
                     margin="normal"
                     name="email"
                     onBlur={handleBlur}
@@ -95,7 +94,7 @@ const Login = () => {
                   />
                   <TextField
                     fullWidth
-                    label="Password"
+                    label="Senha"
                     margin="normal"
                     name="password"
                     onBlur={handleBlur}
@@ -112,15 +111,9 @@ const Login = () => {
                       type="submit"
                       variant="contained"
                     >
-                      Sign in now
+                      Entrar
                     </Button>
                   </Box>
-                  <Typography color="textSecondary" variant="body1">
-                    Don&apos;t have an account?
-                    <Link component={RouterLink} to="/register" variant="h6">
-                      Sign up
-                    </Link>
-                  </Typography>
                 </form>
               )}
             </Formik>
