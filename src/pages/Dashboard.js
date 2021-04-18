@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Box, Container, Grid } from '@material-ui/core';
+import {
+  Box, Container, Grid, Typography
+} from '@material-ui/core';
 import TaskList from 'src/components/dashboard//LatestOrders';
 import Sales from 'src/components/dashboard//Sales';
 import TrafficByDevice from 'src/components/dashboard//TrafficByDevice';
@@ -30,7 +32,13 @@ const Dashboard = () => {
                   py: 3
                 }}
               >
+
                 <Container maxWidth={false}>
+                  <Box sx={{ marginTop: 0, marginBottom: 2 }}>
+                    <Typography color="textSecondary" gutterBottom variant="h2">
+                      {Project.nomeProjeto}
+                    </Typography>
+                  </Box>
                   <Grid container spacing={3}>
                     <Grid item lg={2} sm={6} xl={3} xs={12}>
                       <StatsCard label="IN_PROGESS" value={project.stats.IN_PROGRESS} />
