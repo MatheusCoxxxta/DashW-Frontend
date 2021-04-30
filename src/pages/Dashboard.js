@@ -1,7 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import {
-  Box, Container, Grid, InputLabel, Select, MenuItem
+  Box,
+  Container,
+  Grid,
+  InputLabel,
+  Select,
+  MenuItem
 } from '@material-ui/core';
 import TaskList from 'src/components/dashboard//LatestOrders';
 import Sales from 'src/components/dashboard//Sales';
@@ -41,6 +46,7 @@ const Dashboard = () => {
     });
 
     setProject(response.data);
+    localStorage.setItem('@dashw:project', JSON.stringify(response.data));
   };
 
   return (
@@ -55,17 +61,26 @@ const Dashboard = () => {
           py: 3
         }}
       >
-
         <Container maxWidth={false}>
           <Box sx={{ marginTop: 0, marginBottom: 2 }}>
-            <InputLabel id="label" className="select-input-dash">Selecione o projeto: </InputLabel>
-            <Select onChange={(value) => getProject(value.target.value)} id="select" value="null" className="select-dash" variant="outlined">
-              <MenuItem value={null} disabled>{project ? project.project : 'Selecione um projeto'}</MenuItem>
-              {
-                        projects.map((myProject) => (
-                          <MenuItem value={myProject.id}>{myProject.projetoNome}</MenuItem>
-                        ))
-                      }
+            <InputLabel id="label" className="select-input-dash">
+              Selecione o projeto:{' '}
+            </InputLabel>
+            <Select
+              onChange={(value) => getProject(value.target.value)}
+              id="select"
+              value="null"
+              className="select-dash"
+              variant="outlined"
+            >
+              <MenuItem value={null} disabled>
+                {project ? project.project : 'Selecione um projeto'}
+              </MenuItem>
+              {projects.map((myProject) => (
+                <MenuItem value={myProject.id}>
+                  {myProject.projetoNome}
+                </MenuItem>
+              ))}
             </Select>
           </Box>
           <Grid container spacing={3}>
@@ -76,16 +91,25 @@ const Dashboard = () => {
               <StatsCard label="QA_TESTING" value={Project.stats.QA_TESTING} />
             </Grid>
             <Grid item lg={2} sm={6} xl={3} xs={12}>
-              <StatsCard label="QA_DEPLOYING" value={Project.stats.QA_DEPLOYING} />
+              <StatsCard
+                label="QA_DEPLOYING"
+                value={Project.stats.QA_DEPLOYING}
+              />
             </Grid>
             <Grid item lg={2} sm={6} xl={3} xs={12}>
-              <StatsCard label="RELEASE_TO_PROD" value={Project.stats.RELEASE_TO_PROD} />
+              <StatsCard
+                label="RELEASE_TO_PROD"
+                value={Project.stats.RELEASE_TO_PROD}
+              />
             </Grid>
             <Grid item lg={2} sm={6} xl={3} xs={12}>
               <StatsCard label="FOR_TEST" value={Project.stats.FOR_TEST} />
             </Grid>
             <Grid item lg={2} sm={6} xl={3} xs={12}>
-              <StatsCard label="PROD_DEPLOYING" value={Project.stats.PROD_DEPLOYING} />
+              <StatsCard
+                label="PROD_DEPLOYING"
+                value={Project.stats.PROD_DEPLOYING}
+              />
             </Grid>
             <Grid item lg={8} md={12} xl={9} xs={12}>
               <Sales />
@@ -93,18 +117,14 @@ const Dashboard = () => {
             <Grid item lg={4} md={6} xl={3} xs={12}>
               <TrafficByDevice sx={{ height: '100%' }} />
             </Grid>
-            {
-                      project
-                        ? (
-                          <Grid item lg={12} md={12} xl={9} xs={12}>
-                            <TaskList project={project} />
-                          </Grid>
-                        ) : null
-                    }
+            {project ? (
+              <Grid item lg={12} md={12} xl={9} xs={12}>
+                <TaskList project={project} />
+              </Grid>
+            ) : null}
           </Grid>
         </Container>
       </Box>
-
     </>
   );
 };
