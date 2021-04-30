@@ -21,6 +21,14 @@
   color: #FFF !important;
 }
 
+.css-r2jef8 {
+  background-color: #000;
+}
+
+.header-kanban {
+  margin: 0 25px;
+}
+
 @media (max-width: 1440px) {
   .card-login {
     margin: 20px;
