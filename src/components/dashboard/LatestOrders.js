@@ -31,7 +31,7 @@ const TaskList = ({ project }) => (
             </TableRow>
           </TableHead>
           <TableBody>
-            {project.tasks.map((task, index) => (
+            {project.tasks.tasks.map((task, index) => (
               <TableRow hover key={index}>
                 <TableCell>{task.descricao}</TableCell>
                 <TableCell>{`${task.horas}h`}</TableCell>
