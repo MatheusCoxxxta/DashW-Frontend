@@ -17,7 +17,7 @@
   margin: 5px 0;
 }
 
-.css-weuz2y-MuiInputBase-input-MuiOutlinedInput-input {
+.select-style {
   color: #FFF !important;
 }
 
@@ -27,6 +27,10 @@
 
 .header-kanban {
   margin: 0 25px;
+}
+
+.login-fields {
+  color: #000!important;
 }
 
 @media (max-width: 1440px) {

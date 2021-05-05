@@ -59,7 +59,7 @@ const Dashboard = () => {
         <Container maxWidth={false}>
           <Box sx={{ marginTop: 0, marginBottom: 2 }}>
             <InputLabel id="label" className="select-input-dash">Selecione o projeto: </InputLabel>
-            <Select onChange={(value) => getProject(value.target.value)} id="select" value="null" className="select-dash" variant="outlined">
+            <Select onChange={(value) => getProject(value.target.value)} id="select" value="null" className="select-dash select-style" variant="outlined">
               <MenuItem value={null} disabled>{project ? project.project : 'Selecione um projeto'}</MenuItem>
               {
                         projects.map((myProject) => (

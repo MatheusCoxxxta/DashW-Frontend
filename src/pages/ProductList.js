@@ -56,7 +56,7 @@ const ProductList = () => {
           onChange={(value) => getProject(value.target.value)}
           id="select"
           value="null"
-          className="select-dash"
+          className="select-dash select-style"
           variant="outlined"
         >
           <MenuItem value={null} disabled>
