@@ -56,11 +56,11 @@ const ProductList = () => {
           onChange={(value) => getProject(value.target.value)}
           id="select"
           value="null"
-          className="select-dash"
+          className="select-dash select-style"
           variant="outlined"
         >
           <MenuItem value={null} disabled>
-            {project ? project.project : 'Selecione um projeto'}
+            {project ? project.tasks.project : 'Selecione um projeto'}
           </MenuItem>
           {projects.map((myProject) => (
             <MenuItem value={myProject.id}>{myProject.projetoNome}</MenuItem>
@@ -100,7 +100,7 @@ const ProductList = () => {
                     >
                       IN_PROGESS
                     </Typography>
-                    {project.tasks.map((task) => (task.status === 'IN_PROGRESS' ? (
+                    {project.tasks.tasks.map((task) => (task.status === 'IN_PROGRESS' ? (
                       <Grid
                         item
                         lg={12}
@@ -139,7 +139,7 @@ const ProductList = () => {
                     >
                       QA_TESTING
                     </Typography>
-                    {project.tasks.map((task) => (task.status === 'QA_TESTING' ? (
+                    {project.tasks.tasks.map((task) => (task.status === 'QA_TESTING' ? (
                       <Grid item lg={12} sm={6} xl={3} xs={12}>
                         <TaskCard
                           description={task.descricao}
@@ -171,7 +171,7 @@ const ProductList = () => {
                     >
                       QA_DEPLOYING
                     </Typography>
-                    {project.tasks.map((task) => (task.status === 'QA_DEPLOYING' ? (
+                    {project.tasks.tasks.map((task) => (task.status === 'QA_DEPLOYING' ? (
                       <Grid item lg={12} sm={6} xl={3} xs={12}>
                         <TaskCard
                           description={task.descricao}
@@ -203,7 +203,7 @@ const ProductList = () => {
                     >
                       RELEASE_TO_PROD
                     </Typography>
-                    {project.tasks.map((task) => (task.status === 'RELEASE_TO_PROD' ? (
+                    {project.tasks.tasks.map((task) => (task.status === 'RELEASE_TO_PROD' ? (
                       <Grid item lg={12} sm={6} xl={3} xs={12}>
                         <TaskCard
                           description={task.descricao}
@@ -236,7 +236,7 @@ const ProductList = () => {
                     >
                       FOR_TEST
                     </Typography>
-                    {project.tasks.map((task) => (task.status === 'FOR_TEST' ? (
+                    {project.tasks.tasks.map((task) => (task.status === 'FOR_TEST' ? (
                       <Grid item lg={12} sm={6} xl={3} xs={12}>
                         <TaskCard
                           description={task.descricao}
@@ -269,7 +269,7 @@ const ProductList = () => {
                     >
                       PROD_DEPLOYING
                     </Typography>
-                    {project.tasks.map((task) => (task.status === 'PROD_DEPLOYING' ? (
+                    {project.tasks.tasks.map((task) => (task.status === 'PROD_DEPLOYING' ? (
                       <Grid item lg={12} sm={6} xl={3} xs={12}>
                         <TaskCard
                           description={task.descricao}
@@ -301,7 +301,7 @@ const ProductList = () => {
                     >
                       DONE
                     </Typography>
-                    {project.tasks.map((task) => (task.status === 'DONE' ? (
+                    {project.tasks.tasks.map((task) => (task.status === 'DONE' ? (
                       <Grid item lg={12} sm={6} xl={3} xs={12}>
                         <TaskCard
                           description={task.descricao}

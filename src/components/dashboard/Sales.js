@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 import { Bar } from 'react-chartjs-2';
 import {
   Box,
@@ -16,11 +18,11 @@ const Sales = (props) => {
     datasets: [
       {
         backgroundColor: colors.indigo[500],
-        data: [4, 0, 1, 0, 0, 1, 5],
+        data: [props.stats.IN_PROGRESS, props.stats.QA_TESTING, props.stats.QA_DEPLOYING, props.stats.RELEASE_TO_PROD, props.stats.FOR_TEST, props.stats.PROD_DEPLOYING, props.stats.DONE],
         label: 'Tasks'
       },
     ],
-    labels: ['IN_PROGRESS', 'QA_TESTING', 'QA_DEPLOYING', 'RELEASE_TO_PROD', 'FOR_TEST', 'PROD_DEPLOYING']
+    labels: ['IN_PROGRESS', 'QA_TESTING', 'QA_DEPLOYING', 'RELEASE_TO_PROD', 'FOR_TEST', 'PROD_DEPLOYING', 'DONE']
   };
 
   const options = {
