@@ -24,7 +24,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const getProjects = async () => {
-      const response = await api.get('/projects', {
+      const response = await api.get('/project/hours', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -62,59 +62,74 @@ const Dashboard = () => {
       >
         <Container maxWidth={false}>
           <Box sx={{ marginTop: 0, marginBottom: 2 }}>
-            <InputLabel id="label" className="select-input-dash">Selecione o projeto: </InputLabel>
-            <Select onChange={(value) => getProject(value.target.value)} id="select" value="null" className="select-dash select-style" variant="outlined">
-              <MenuItem value={null} disabled>{project ? project.tasks.project : 'Selecione um projeto'}</MenuItem>
-              {
-                        projects.map((myProject) => (
-                          <MenuItem value={myProject.id}>{myProject.projetoNome}</MenuItem>
-                        ))
-                      }
+            <InputLabel id="label" className="select-input-dash">
+              Selecione o projeto:
+            </InputLabel>
+            <Select
+              onChange={(value) => getProject(value.target.value)}
+              id="select"
+              value="null"
+              className="select-dash select-style"
+              variant="outlined"
+            >
+              <MenuItem value={null} disabled>
+                {project ? project.tasks.project : 'Selecione um projeto'}
+              </MenuItem>
+              {projects.map((myProject) => (
+                <MenuItem value={myProject.project.id}>
+                  {myProject.project.projetoNome}
+                </MenuItem>
+              ))}
             </Select>
           </Box>
-          {!project ? null
-            : (
-              <Grid container spacing={3}>
-                <Grid item lg={2} sm={6} xl={3} xs={12}>
-                  <StatsCard label="IN_PROGESS" value={project.stats.IN_PROGRESS} />
-                </Grid>
-                <Grid item lg={2} sm={6} xl={3} xs={12}>
-                  <StatsCard label="QA_TESTING" value={project.stats.QA_TESTING} />
-                </Grid>
-                <Grid item lg={2} sm={6} xl={3} xs={12}>
-                  <StatsCard
-                    label="QA_DEPLOYING"
-                    value={project.stats.QA_DEPLOYING}
-                  />
-                </Grid>
-                <Grid item lg={2} sm={6} xl={3} xs={12}>
-                  <StatsCard
-                    label="RELEASE_TO_PROD"
-                    value={project.stats.RELEASE_TO_PROD}
-                  />
-                </Grid>
-                <Grid item lg={2} sm={6} xl={3} xs={12}>
-                  <StatsCard label="FOR_TEST" value={project.stats.FOR_TEST} />
-                </Grid>
-                <Grid item lg={2} sm={6} xl={3} xs={12}>
-                  <StatsCard
-                    label="PROD_DEPLOYING"
-                    value={project.stats.PROD_DEPLOYING}
-                  />
-                </Grid>
-                <Grid item lg={8} md={12} xl={9} xs={12}>
-                  <Sales stats={project.stats} />
-                </Grid>
-                <Grid item lg={4} md={6} xl={3} xs={12}>
-                  <TrafficByDevice sx={{ height: '100%' }} />
-                </Grid>
-                {project ? (
-                  <Grid item lg={12} md={12} xl={9} xs={12}>
-                    <TaskList project={project} />
-                  </Grid>
-                ) : null}
+          {!project ? null : (
+            <Grid container spacing={3}>
+              <Grid item lg={2} sm={6} xl={3} xs={12}>
+                <StatsCard
+                  label="IN_PROGESS"
+                  value={project.stats.IN_PROGRESS}
+                />
               </Grid>
-            )}
+              <Grid item lg={2} sm={6} xl={3} xs={12}>
+                <StatsCard
+                  label="QA_TESTING"
+                  value={project.stats.QA_TESTING}
+                />
+              </Grid>
+              <Grid item lg={2} sm={6} xl={3} xs={12}>
+                <StatsCard
+                  label="QA_DEPLOYING"
+                  value={project.stats.QA_DEPLOYING}
+                />
+              </Grid>
+              <Grid item lg={2} sm={6} xl={3} xs={12}>
+                <StatsCard
+                  label="RELEASE_TO_PROD"
+                  value={project.stats.RELEASE_TO_PROD}
+                />
+              </Grid>
+              <Grid item lg={2} sm={6} xl={3} xs={12}>
+                <StatsCard label="FOR_TEST" value={project.stats.FOR_TEST} />
+              </Grid>
+              <Grid item lg={2} sm={6} xl={3} xs={12}>
+                <StatsCard
+                  label="PROD_DEPLOYING"
+                  value={project.stats.PROD_DEPLOYING}
+                />
+              </Grid>
+              <Grid item lg={8} md={12} xl={9} xs={12}>
+                <Sales stats={project.stats} />
+              </Grid>
+              <Grid item lg={4} md={6} xl={3} xs={12}>
+                <TrafficByDevice sx={{ height: '100%' }} />
+              </Grid>
+              {project ? (
+                <Grid item lg={12} md={12} xl={9} xs={12}>
+                  <TaskList project={project} />
+                </Grid>
+              ) : null}
+            </Grid>
+          )}
         </Container>
       </Box>
     </>
