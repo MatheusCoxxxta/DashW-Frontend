@@ -34,27 +34,14 @@ const CustomerListResults = ({ customers, ...rest }) => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>
-                  Id
-                </TableCell>
-                <TableCell>
-                  Nome
-                </TableCell>
-                <TableCell>
-                  Email
-                </TableCell>
+                <TableCell>Nome</TableCell>
+                <TableCell>Email</TableCell>
+                <TableCell>Horas</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {customers.slice(0, limit).map((customer) => (
-                <TableRow
-                  hover
-                  key={customer.id}
-                >
-
-                  <TableCell>
-                    {customer.id}
-                  </TableCell>
+                <TableRow hover key={customer.id}>
                   <TableCell>
                     <Box
                       sx={{
@@ -62,23 +49,17 @@ const CustomerListResults = ({ customers, ...rest }) => {
                         display: 'flex'
                       }}
                     >
-                      <Avatar
-                        src={customer.imagem}
-                        sx={{ mr: 2 }}
-                      >
-                        {getInitials(customer.nome)}
+                      <Avatar src={customer.user.imagem} sx={{ mr: 2 }}>
+                        {getInitials(customer.user.nome)}
                       </Avatar>
-                      <Typography
-                        color="textPrimary"
-                        variant="body1"
-                      >
-                        {customer.nome}
-                        {customer.sobrenome}
+                      <Typography color="textPrimary" variant="body1">
+                        {`${customer.user.nome} ${customer.user.sobrenome}`}
                       </Typography>
                     </Box>
                   </TableCell>
+                  <TableCell>{customer.user.email}</TableCell>
                   <TableCell>
-                    {customer.email}
+                    {Object.entries(customer)[0][1].toFixed(2)}
                   </TableCell>
                 </TableRow>
               ))}
