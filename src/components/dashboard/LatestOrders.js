@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/no-array-index-key */
-//PAGE - Tarefas do Projeto
+// PAGE - Tarefas do Projeto
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import {
   Box,
@@ -40,21 +40,21 @@ const TaskList = ({ project }) => (
                   <Chip
                     style={{
                       color:
-                        task.status === 'QA_DEPLOYING' ||
-                        task.status === 'QA_TESTING'
+                        task.status === 'QA_DEPLOYING'
+                          || task.status === 'QA_TESTING'
                           ? '#000000'
                           : '#ffffff',
                       backgroundColor:
-                        task.status === 'IN_PROGRESS' ||
-                        task.status === 'FOR_TEST'
+                        task.status === 'IN_PROGRESS'
+                          || task.status === 'FOR_TEST'
                           ? colors.warning
-                          : task.status === 'PROD_DEPLOYING' ||
-                            task.status === 'RELEASE_TO_PROD'
-                          ? colors.primary
-                          : task.status === 'QA_DEPLOYING' ||
-                            task.status === 'QA_TESTING'
-                          ? colors.default
-                          : colors.success
+                          : task.status === 'PROD_DEPLOYING'
+                            || task.status === 'RELEASE_TO_PROD'
+                            ? colors.primary
+                            : task.status === 'QA_DEPLOYING'
+                              || task.status === 'QA_TESTING'
+                              ? colors.default
+                              : colors.success
                     }}
                     label={task.status}
                     size="small"
