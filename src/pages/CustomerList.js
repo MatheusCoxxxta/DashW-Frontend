@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import { Box, Container } from '@material-ui/core';
-import CustomerListResults from 'src/components/customer/CustomerListResults';
+import ColabsList from 'src/components/Colabs/ColabsList';
 import CustomerListToolbar from 'src/components/customer/CustomerListToolbar';
 import { api } from 'src/services/api';
 import AuthContext from 'src/contexts/auth';
@@ -45,7 +45,7 @@ const CustomerList = () => {
             <Container maxWidth={false}>
               <CustomerListToolbar />
               <Box sx={{ pt: 3 }}>
-                <CustomerListResults customers={users} />
+                <ColabsList customers={users} />
               </Box>
             </Container>
           </Box>
