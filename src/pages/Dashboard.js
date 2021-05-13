@@ -1,13 +1,7 @@
+/* eslint-disable object-curly-newline */
 import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import {
-  Box,
-  Container,
-  Grid,
-  InputLabel,
-  Select,
-  MenuItem
-} from '@material-ui/core';
+import { Box, Container, Grid, InputLabel } from '@material-ui/core';
 import TaskList from 'src/components/dashboard//LatestOrders';
 import Sales from 'src/components/dashboard//Sales';
 import TrafficByDevice from 'src/components/dashboard//TrafficByDevice';
@@ -15,6 +9,7 @@ import StatsCard from 'src/components/StatsCard';
 import './styles.css';
 import { api } from 'src/services/api';
 import AuthContext from 'src/contexts/auth';
+import ProjectList from 'src/components/Projects/ProjectList';
 
 const Dashboard = () => {
   const [project, setProject] = useState(null);
@@ -45,7 +40,6 @@ const Dashboard = () => {
     });
 
     setProject(response.data);
-    localStorage.setItem('@dashw:project', JSON.stringify(response.data));
   };
 
   return (
@@ -65,22 +59,9 @@ const Dashboard = () => {
             <InputLabel id="label" className="select-input-dash">
               Selecione o projeto:
             </InputLabel>
-            <Select
-              onChange={(value) => getProject(value.target.value)}
-              id="select"
-              value="null"
-              className="select-dash select-style"
-              variant="outlined"
-            >
-              <MenuItem value={null} disabled>
-                {project ? project.tasks.project : 'Selecione um projeto'}
-              </MenuItem>
-              {projects.map((myProject) => (
-                <MenuItem value={myProject.project.id}>
-                  {myProject.project.projetoNome}
-                </MenuItem>
-              ))}
-            </Select>
+            <Grid item lg={12} md={12} xl={12} xs={12}>
+              <ProjectList projects={projects} chooseProject={getProject} />
+            </Grid>
           </Box>
           {!project ? null : (
             <Grid container spacing={3}>
