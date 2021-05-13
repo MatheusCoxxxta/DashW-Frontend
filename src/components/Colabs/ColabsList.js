@@ -14,6 +14,7 @@ import {
   Typography
 } from '@material-ui/core';
 import getInitials from 'src/utils/getInitials';
+import extractHours from 'src/utils/extractHours';
 
 const ColabsList = ({ customers, ...rest }) => {
   const [limit, setLimit] = useState(10);
@@ -58,9 +59,7 @@ const ColabsList = ({ customers, ...rest }) => {
                     </Box>
                   </TableCell>
                   <TableCell>{customer.user.email}</TableCell>
-                  <TableCell>
-                    {Object.entries(customer)[0][1].toFixed(2)}
-                  </TableCell>
+                  <TableCell>{extractHours(customer)}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
