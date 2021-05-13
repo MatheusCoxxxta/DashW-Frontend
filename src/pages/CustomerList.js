@@ -33,7 +33,7 @@ const CustomerList = () => {
       {users.length > 0 ? (
         <>
           <Helmet>
-            <title>Customers | Material Kit</title>
+            <title>Colaboradores | DashW</title>
           </Helmet>
           <Box
             sx={{
