@@ -10,6 +10,7 @@ import './styles.css';
 import { api } from 'src/services/api';
 import AuthContext from 'src/contexts/auth';
 import ProjectList from 'src/components/Projects/ProjectList';
+import sortWorkedHours from 'src/utils/sortWorkedHours';
 
 const Dashboard = () => {
   const [project, setProject] = useState(null);
@@ -25,7 +26,11 @@ const Dashboard = () => {
         }
       });
 
-      setProjects(response.data);
+      const projectArray = response.data;
+
+      const sortedProjects = projectArray.sort(sortWorkedHours);
+
+      setProjects(sortedProjects);
     };
 
     getProjects();
@@ -58,6 +63,7 @@ const Dashboard = () => {
           <Box sx={{ marginTop: 0, marginBottom: 2 }}>
             <InputLabel id="label" className="select-input-dash">
               Selecione o projeto:
+              {project ? ` ${project.tasks.project}` : null}
             </InputLabel>
             <Grid item lg={12} md={12} xl={12} xs={12}>
               <ProjectList projects={projects} chooseProject={getProject} />
