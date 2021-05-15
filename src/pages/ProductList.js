@@ -117,7 +117,7 @@ const ProductList = () => {
                       gutterBottom
                       variant="h5"
                     >
-                      IN_PROGESS
+                      IN_PROGRESS
                     </Typography>
                     {project.tasks.tasks.map((task) =>
                       task.status === 'IN_PROGRESS' ? (
