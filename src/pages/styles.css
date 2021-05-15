@@ -33,6 +33,16 @@
   color: #000 !important;
 }
 
+.box-dropdown-status {
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px 0
+}
+
+.style-dropdown-status {
+  height: 30px;
+}
+
 @media (max-width: 1440px) {
   .card-login {
     margin: 20px;
