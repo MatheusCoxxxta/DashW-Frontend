@@ -11,6 +11,7 @@ import { api } from 'src/services/api';
 import AuthContext from 'src/contexts/auth';
 import ProjectList from 'src/components/Projects/ProjectList';
 import sortWorkedHours from 'src/utils/sortWorkedHours';
+import sortWorkedHoursDecreasing from 'src/utils/sortWorkedHoursDecreasing';
 
 const Dashboard = () => {
   const [project, setProject] = useState(null);
@@ -45,6 +46,22 @@ const Dashboard = () => {
     });
 
     setProject(response.data);
+  };
+
+  const sortByHoursDecreasing = () => {
+    const tasksArray = project.tasks.tasks;
+
+    const sortedTasks = tasksArray.sort(sortWorkedHoursDecreasing);
+
+    const data = {
+      stats: project.stats,
+      tasks: {
+        project: project.tasks.project,
+        tasks: sortedTasks
+      }
+    };
+
+    setProject(data);
   };
 
   return (
@@ -112,7 +129,7 @@ const Dashboard = () => {
               </Grid>
               {project ? (
                 <Grid item lg={12} md={12} xl={9} xs={12}>
-                  <TaskList project={project} />
+                  <TaskList project={project} sort={sortByHoursDecreasing} />
                 </Grid>
               ) : null}
             </Grid>

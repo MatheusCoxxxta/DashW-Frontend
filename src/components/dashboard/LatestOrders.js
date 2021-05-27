@@ -17,7 +17,7 @@ import {
 } from '@material-ui/core';
 import colors from '../../constants/color';
 
-const TaskList = ({ project }) => (
+const TaskList = ({ project, sort }) => (
   <Card>
     <CardHeader title="Tarefas do Projeto" />
     <Divider />
@@ -27,7 +27,7 @@ const TaskList = ({ project }) => (
           <TableHead>
             <TableRow>
               <TableCell>Descrição</TableCell>
-              <TableCell>Tempo decorrido</TableCell>
+              <TableCell onClick={() => sort()}>Tempo decorrido</TableCell>
               <TableCell>Status</TableCell>
             </TableRow>
           </TableHead>
@@ -40,21 +40,21 @@ const TaskList = ({ project }) => (
                   <Chip
                     style={{
                       color:
-                        task.status === 'QA_DEPLOYING'
-                          || task.status === 'QA_TESTING'
+                        task.status === 'QA_DEPLOYING' ||
+                        task.status === 'QA_TESTING'
                           ? '#000000'
                           : '#ffffff',
                       backgroundColor:
-                        task.status === 'IN_PROGRESS'
-                          || task.status === 'FOR_TEST'
+                        task.status === 'IN_PROGRESS' ||
+                        task.status === 'FOR_TEST'
                           ? colors.warning
-                          : task.status === 'PROD_DEPLOYING'
-                            || task.status === 'RELEASE_TO_PROD'
-                            ? colors.primary
-                            : task.status === 'QA_DEPLOYING'
-                              || task.status === 'QA_TESTING'
-                              ? colors.default
-                              : colors.success
+                          : task.status === 'PROD_DEPLOYING' ||
+                            task.status === 'RELEASE_TO_PROD'
+                          ? colors.primary
+                          : task.status === 'QA_DEPLOYING' ||
+                            task.status === 'QA_TESTING'
+                          ? colors.default
+                          : colors.success
                     }}
                     label={task.status}
                     size="small"
