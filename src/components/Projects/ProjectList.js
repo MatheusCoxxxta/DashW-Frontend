@@ -44,6 +44,7 @@ const ProjectList = ({ projects, chooseProject, ...rest }) => {
                   hover
                   key={project.project.id}
                   onClick={() => chooseProject(project.project.id)}
+                  style={{ cursor: 'pointer' }}
                 >
                   <TableCell>
                     <Box

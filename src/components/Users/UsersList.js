@@ -42,6 +42,7 @@ const UsersList = ({ users, chooseColab, ...rest }) => {
                   hover
                   key={user.user.id}
                   onClick={() => chooseColab(user.user.id)}
+                  style={{ cursor: 'pointer' }}
                 >
                   <TableCell>
                     <Box
