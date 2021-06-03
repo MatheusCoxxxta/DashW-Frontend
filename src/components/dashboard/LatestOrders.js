@@ -1,3 +1,5 @@
+/* eslint-disable operator-linebreak */
+/* eslint-disable indent */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/no-array-index-key */
@@ -15,6 +17,7 @@ import {
   TableHead,
   TableRow
 } from '@material-ui/core';
+import SortIcon from '@material-ui/icons/ImportExport';
 import colors from '../../constants/color';
 
 const TaskList = ({ project, sort }) => (
@@ -27,7 +30,13 @@ const TaskList = ({ project, sort }) => (
           <TableHead>
             <TableRow>
               <TableCell>Descrição</TableCell>
-              <TableCell onClick={() => sort()}>Tempo decorrido</TableCell>
+              <TableCell>
+                Tempo decorrido
+                <SortIcon
+                  onClick={() => sort()}
+                  style={{ fontSize: 17, cursor: 'pointer' }}
+                />
+              </TableCell>
               <TableCell>Status</TableCell>
             </TableRow>
           </TableHead>

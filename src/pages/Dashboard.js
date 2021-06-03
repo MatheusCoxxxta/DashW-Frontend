@@ -12,7 +12,10 @@ import AuthContext from 'src/contexts/auth';
 import ProjectList from 'src/components/Projects/ProjectList';
 import UsersList from 'src/components/Users/UsersList';
 import sortWorkedHours from 'src/utils/sortWorkedHours';
-import sortWorkedHoursDecreasing from 'src/utils/sortWorkedHoursDecreasing';
+import {
+  sortWorkedHoursDecreasing,
+  sortWorkedHoursIncreasing
+} from 'src/utils/sortWorkedHoursDecreasing';
 import roles from 'src/constants/roles';
 import statusList from 'src/constants/StatusList';
 
@@ -22,6 +25,7 @@ const Dashboard = () => {
   const [users, setUsers] = useState([]);
   const [projectId, setProjectId] = useState(null);
   const [percentageArray, setPercentageArray] = useState([]);
+  const [hoursSortType, setHoursSortType] = useState();
 
   const { token, user } = useContext(AuthContext);
 
@@ -56,8 +60,14 @@ const Dashboard = () => {
 
   const sortByHoursDecreasing = () => {
     const tasksArray = project.tasks.tasks;
-
-    const sortedTasks = tasksArray.sort(sortWorkedHoursDecreasing);
+    let sortedTasks;
+    if (hoursSortType === 'Increasing') {
+      sortedTasks = tasksArray.sort(sortWorkedHoursDecreasing);
+      setHoursSortType('Decreasing');
+    } else {
+      sortedTasks = tasksArray.sort(sortWorkedHoursIncreasing);
+      setHoursSortType('Increasing');
+    }
 
     const data = {
       stats: project.stats,
