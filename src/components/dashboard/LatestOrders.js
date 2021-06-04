@@ -20,7 +20,7 @@ import {
 import SortIcon from '@material-ui/icons/ImportExport';
 import colors from '../../constants/color';
 
-const TaskList = ({ project, sort }) => (
+const TaskList = ({ project, sort, sortDescription }) => (
   <Card>
     <CardHeader title="Tarefas do Projeto" />
     <Divider />
@@ -29,7 +29,13 @@ const TaskList = ({ project, sort }) => (
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Descrição</TableCell>
+              <TableCell>
+                Descrição
+                <SortIcon
+                  onClick={() => sortDescription()}
+                  style={{ fontSize: 17, cursor: 'pointer' }}
+                />
+              </TableCell>
               <TableCell>
                 Tempo decorrido
                 <SortIcon

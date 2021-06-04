@@ -15,9 +15,10 @@ import sortWorkedHours from 'src/utils/sortWorkedHours';
 import {
   sortWorkedHoursDecreasing,
   sortWorkedHoursIncreasing
-} from 'src/utils/sortWorkedHoursDecreasing';
+} from 'src/utils/sortByHours';
 import roles from 'src/constants/roles';
 import statusList from 'src/constants/StatusList';
+import { sortDown, sortUp } from 'src/utils/sortAlphabetically';
 
 const Dashboard = () => {
   const [project, setProject] = useState(null);
@@ -26,6 +27,7 @@ const Dashboard = () => {
   const [projectId, setProjectId] = useState(null);
   const [percentageArray, setPercentageArray] = useState([]);
   const [hoursSortType, setHoursSortType] = useState();
+  const [alphaSortType, setAlphaSortType] = useState();
 
   const { token, user } = useContext(AuthContext);
 
@@ -60,6 +62,7 @@ const Dashboard = () => {
 
   const sortByHoursDecreasing = () => {
     const tasksArray = project.tasks.tasks;
+
     let sortedTasks;
     if (hoursSortType === 'Increasing') {
       sortedTasks = tasksArray.sort(sortWorkedHoursDecreasing);
@@ -67,6 +70,29 @@ const Dashboard = () => {
     } else {
       sortedTasks = tasksArray.sort(sortWorkedHoursIncreasing);
       setHoursSortType('Increasing');
+    }
+
+    const data = {
+      stats: project.stats,
+      tasks: {
+        project: project.tasks.project,
+        tasks: sortedTasks
+      }
+    };
+
+    setProject(data);
+  };
+
+  const sortByAlphabetically = () => {
+    const tasksArray = project.tasks.tasks;
+    let sortedTasks;
+
+    if (alphaSortType === 'Increasing') {
+      sortedTasks = tasksArray.sort(sortUp);
+      setAlphaSortType('Decreasing');
+    } else {
+      sortedTasks = tasksArray.sort(sortDown);
+      setAlphaSortType('Increasing');
     }
 
     const data = {
@@ -218,7 +244,11 @@ const Dashboard = () => {
               </Grid>
               {project ? (
                 <Grid item lg={12} md={12} xl={9} xs={12}>
-                  <TaskList project={project} sort={sortByHoursDecreasing} />
+                  <TaskList
+                    sortDescription={sortByAlphabetically}
+                    project={project}
+                    sort={sortByHoursDecreasing}
+                  />
                 </Grid>
               ) : null}
             </Grid>
