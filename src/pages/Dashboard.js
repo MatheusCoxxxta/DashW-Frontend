@@ -181,7 +181,7 @@ const Dashboard = () => {
               Selecione o projeto:
               {project ? ` ${project.tasks.project}` : null}
             </InputLabel>
-            {JSON.parse(user).id_role === roles.ID_GESTOR ? (
+            {user.id_role === roles.ID_GESTOR ? (
               <Grid item lg={12} md={12} xl={12} xs={12}>
                 <ProjectList projects={projects} chooseProject={getProject} />
               </Grid>
